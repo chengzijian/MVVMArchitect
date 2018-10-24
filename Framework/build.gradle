@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    api "android.arch.navigation:navigation-fragment-ktx:$rootProject.navigationVersion"
+    api "android.arch.navigation:navigation-ui-ktx:$rootProject.navigationVersion"
+    api "android.arch.work:work-runtime-ktx:$rootProject.workVersion"
+    api "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    api "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    api "androidx.core:core-ktx:$rootProject.ktxVersion"
+    api "androidx.legacy:legacy-support-v4:$rootProject.supportLibraryVersion"
+    api "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+    api "androidx.recyclerview:recyclerview:$rootProject.supportLibraryVersion"
+    api "androidx.room:room-runtime:$rootProject.roomVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    api "com.google.android.material:material:$rootProject.supportLibraryVersion"
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$rootProject.kotlinVersion"
+
+    api 'me.jessyan:autosize:1.0.1'
+
+    // Testing dependencies
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+}
